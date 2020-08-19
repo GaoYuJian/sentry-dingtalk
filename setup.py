@@ -27,7 +27,7 @@ install_requires = [
 
 setup(
     name='sentry-dingtalk-ecool',
-    version='1.0.1',
+    version='1.0.2',
     keywords='sentry dingding dingtalk',
     author='GaoYuJian',
     author_email='gaoyujian2015@gmail.com',

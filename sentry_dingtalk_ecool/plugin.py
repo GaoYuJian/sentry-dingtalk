@@ -100,7 +100,7 @@ class DingtalkPluginEcool(CorePluginMixin, notify.NotificationPlugin):
         # title
         title = event.title.encode("utf-8")
         if self.get_option("custom_message", project):
-            title = "{} ({})".format(
+            title = u"{} ({})".format(
                 title, self.get_option("custom_message", project))
 
         # issue
