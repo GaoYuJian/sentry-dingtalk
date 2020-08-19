@@ -22,6 +22,8 @@
 
 ![](截屏2020-08-19%2011.54.40.png)
 
+![](截屏2020-08-19%2013.31.50.png)
+
 * sentry version: 9.0.0
 * dingding webhook
 * Sentry sending DingTalk. See https://www.dingtalk.com/
