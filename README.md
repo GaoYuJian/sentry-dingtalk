@@ -19,6 +19,7 @@
  重新构建或者重启(rebuild or reboot)
 
 效果:
+
 ![](截屏2020-08-19%2011.54.40.png)
 
 * sentry version: 9.0.0
