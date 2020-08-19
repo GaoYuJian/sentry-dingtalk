@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-sentry-Dingtalk
+sentry-dingtalk-ecool
 ==============
 
 An extension for Sentry which integrates with Dingtalk. It will send
-notifications to dingtalk robot.
+notifications to dingtalk robot with rich event info.
 
-:copyright: (c) 2017 by guoyong yi, see AUTHORS for more details.
+:copyright: (c) 2020 by gaoyujian, see AUTHORS for more details.
 :license: BSD, see LICENSE for more details.
 """
 from setuptools import setup, find_packages
@@ -27,7 +27,7 @@ install_requires = [
 
 setup(
     name='sentry-dingtalk-ecool',
-    version='0.0.1',
+    version='1.0.1',
     keywords='sentry dingding dingtalk',
     author='GaoYuJian',
     author_email='gaoyujian2015@gmail.com',
@@ -45,7 +45,7 @@ setup(
     test_suite='nose.collector',
     entry_points={
         'sentry.plugins': [
-            'dingtalk = sentry_dingtalk.plugin:DingtalkPlugin'
+            'dingtalk_ecool = sentry_dingtalk_ecool.plugin:DingtalkPluginEcool'
         ],
     },
     include_package_data=True,

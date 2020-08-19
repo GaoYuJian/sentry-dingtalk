@@ -1,30 +1,25 @@
 
-# sentry-dingtalk-new
-
-| Version | Sentry Version |
-|---- |----|
-| 1.0.4 | 9.0.* |
-| 1.1.0 | 9.1.* |
-| 1.2.0 | 20.* , 10.* |
-===============
+# sentry-dingtalk-ecool
 
 配置sentry 钉钉报警通知
 
-安装 - install 
+安装 - install
 
 ```bash
 
-- pip install sentry-dingtalk-new
+- pip install sentry-dingtalk-ecool
 ```
 
-* or docker 
+* or docker
 
 ```bash
-
-  echo sentry-dingtalk-new >> requirements.txt
+  echo sentry-dingtalk-ecool >> requirements.txt
 ```
 
  重新构建或者重启(rebuild or reboot)
+
+效果:
+![](截屏2020-08-19%2011.54.40.png)
 
 * sentry version: 9.0.0
 * dingding webhook
