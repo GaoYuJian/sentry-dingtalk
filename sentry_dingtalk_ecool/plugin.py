@@ -1,3 +1,4 @@
+# encoding:utf-8
 from __future__ import absolute_import
 
 import requests
@@ -118,7 +119,8 @@ class DingtalkPluginEcool(CorePluginMixin, notify.NotificationPlugin):
                     rule.id,
                 )
                 rule_link = absolute_uri(rule_link)
-                ruleStr = u"\n> 由报警规则[{}]({})触发".format(rule.label, rule_link)
+                ruleStr = (u"\n> 由报警规则[{}]({})触发".format(
+                    rule.label, rule_link)).encode('utf-8')
 
         # 标签
         tagStr = ""
