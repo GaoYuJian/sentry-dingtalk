@@ -26,8 +26,8 @@ install_requires = [
 
 
 setup(
-    name='sentry-dingtalk-ecool',
-    version='1.0.4',
+    name='sentry-dingtalk-ecool2',
+    version='1.0.0',
     keywords='sentry dingding dingtalk',
     author='GaoYuJian',
     author_email='gaoyujian2015@gmail.com',
@@ -45,7 +45,7 @@ setup(
     test_suite='nose.collector',
     entry_points={
         'sentry.plugins': [
-            'dingtalk_ecool = sentry_dingtalk_ecool.plugin:DingtalkPluginEcool'
+            'dingtalk_ecool2 = sentry_dingtalk_ecool2.plugin:DingtalkPluginEcool'
         ],
     },
     include_package_data=True,
