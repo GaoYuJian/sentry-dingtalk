@@ -10,11 +10,11 @@ from sentry.integrations import FeatureDescription, IntegrationFeatures
 from sentry_plugins.base import CorePluginMixin
 
 
-class DingtalkPluginEcool(CorePluginMixin, notify.NotificationPlugin):
-    title = "dingtalk_ecool"
-    slug = "dingtalk_ecool"
+class DingtalkPluginEcooltwo(CorePluginMixin, notify.NotificationPlugin):
+    title = "dingtalk_ecool_two"
+    slug = "dingtalk_ecool_two"
     description = "Post notifications to a DingDing webhook."
-    conf_key = "dingtalk_ecool"
+    conf_key = "dingtalk_ecool_two"
     required_field = "webhook"
     feature_descriptions = [
         FeatureDescription(
