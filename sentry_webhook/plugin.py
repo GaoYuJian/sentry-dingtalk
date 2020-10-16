@@ -10,11 +10,11 @@ from sentry.integrations import FeatureDescription, IntegrationFeatures
 from sentry_plugins.base import CorePluginMixin
 
 
-class DingtalkPluginEcooltwo(CorePluginMixin, notify.NotificationPlugin):
-    title = "dingtalk_ecool_two"
-    slug = "dingtalk_ecool_two"
+class DingtalkPluginAlertWebhook(CorePluginMixin, notify.NotificationPlugin):
+    title = "sentry_alert_webhook"
+    slug = "sentry_alert_webhook"
     description = "Post notifications to a DingDing webhook."
-    conf_key = "dingtalk_ecool_two"
+    conf_key = "sentry_alert_webhook"
     required_field = "webhook"
     feature_descriptions = [
         FeatureDescription(
@@ -36,9 +36,9 @@ class DingtalkPluginEcooltwo(CorePluginMixin, notify.NotificationPlugin):
                 "name": "webhook",
                 "label": "Webhook URL",
                 "type": "url",
-                "placeholder": "https://oapi.dingtalk.com/robot/send?access_token=abcdefg",
+                "placeholder": "custom webhook",
                 "required": True,
-                "help": "Your custom dingding webhook URL.",
+                "help": "Your custom webhook URL.",
             },
             {
                 "name": "custom_message",
@@ -106,10 +106,10 @@ class DingtalkPluginEcooltwo(CorePluginMixin, notify.NotificationPlugin):
 
         # issue
         issue_link = group.get_absolute_url(params={"referrer": "dingding"})
-        issueStr = "\n> #### [issue]({})".format(issue_link)
 
         # 报警规则
-        ruleStr = ""
+        rule_label = ""
+        rule_link = ""
         if self.get_option("include_rules", project):
             if notification.rules:
                 rule = notification.rules[0]
@@ -119,11 +119,10 @@ class DingtalkPluginEcooltwo(CorePluginMixin, notify.NotificationPlugin):
                     rule.id,
                 )
                 rule_link = absolute_uri(rule_link)
-                ruleStr = (u"\n> 由报警规则[{}]({})触发".format(
-                    rule.label, rule_link)).encode('utf-8')
+                rule_label = rule.label
 
         # 标签
-        tagStr = ""
+        tags = []
         if self.get_option("include_tags", project):
             included_tags = set(self.get_tag_list(
                 "included_tag_keys", project) or [])
@@ -134,23 +133,20 @@ class DingtalkPluginEcooltwo(CorePluginMixin, notify.NotificationPlugin):
                 std_key = tagstore.get_standardized_key(key)
                 if included_tags and key not in included_tags and std_key not in included_tags:
                     continue
-                tagStr = tagStr + \
-                    "\n> ###### {}:{} ".format(tag_key.encode(
-                        "utf-8"), tag_value.encode("utf-8"))
-
-        payload = title
-        if ruleStr:
-            payload = title + ruleStr
-        payload = payload + issueStr
-        if tagStr:
-            payload = payload + tagStr
+                tags.append([tag_key, tag_value])
 
         webhookUrl = self.get_option("webhook", project)
         headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-        data = {"msgtype": "markdown",
-                "markdown": {
+        data = {
+            "data": {
+                "event": {
+                    "project": project.id,
                     "title": title,
-                    "text": payload
-                }
-                }
+                    "web_url": issue_link,
+                    "tags": tags
+                },
+                "triggered_rule": rule_label,
+                "triggered_rule_url": rule_link
+            }
+        }
         requests.post(webhookUrl, data=json.dumps(data), headers=headers)

@@ -26,8 +26,8 @@ install_requires = [
 
 
 setup(
-    name='sentry-dingtalk-ecooltwo',
-    version='2.0.0',
+    name='sentry-alert-webhook',
+    version='1.0.1',
     keywords='sentry dingding dingtalk',
     author='GaoYuJian',
     author_email='gaoyujian2015@gmail.com',
@@ -45,7 +45,7 @@ setup(
     test_suite='nose.collector',
     entry_points={
         'sentry.plugins': [
-            'dingtalk_ecooltwo = sentry_dingtalk_ecooltwo.plugin:DingtalkPluginEcooltwo'
+            'dingtalk_alert_webhook = sentry_webhook.plugin:DingtalkPluginAlertWebhook'
         ],
     },
     include_package_data=True,
